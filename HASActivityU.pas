@@ -394,6 +394,7 @@ begin
     try
       inherited addItem(myXML.XML.Text);
       myXML.XML.Text := self.XMLResults;
+      FLog := myXML.XML.Text;
       myXML.Active := true;
       rootNode := myXML.DocumentElement;
       // results will be in a3 or a5 depending of response text

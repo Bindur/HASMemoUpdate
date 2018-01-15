@@ -26,10 +26,30 @@ var
 
 const
   ROOT      = 'Software';
-  APPROOT   = 'Helix Agency Services';
+  APPROOT   = 'HelixAgencyServices';
   APP       = APPROOT + '\HASMemoUpdate';
   DES       = 0;
   BlowFish  = 1;
+
+procedure logToXML(name,body: string);
+var
+  fOut: TextFile;
+  fNam: String;
+begin
+  try
+    fNam := name;
+    AssignFile(fOut,fNam);
+    ReWrite(fOut);
+//      if not FileExists(fNam) then
+//        ReWrite(fOut)
+//      else
+//        Append(fOut);
+    Writeln(fOut, body);
+    CloseFile(fOut);
+    except
+      CloseFile(fOut);
+    end;
+end;
 
 function StringToHex(S: String): String;
 var I: Integer;
@@ -133,7 +153,7 @@ begin
         sqlPass := HexToString(sqlPass);
 
       sqlUser   := FIniFile.ReadString(APP,'SQLUSER','sa');
-      sqlServer := FIniFile.ReadString(APP,'SQLSERVER','HOU-SQLREPORTS');
+      sqlServer := FIniFile.ReadString(APP,'SQLSERVER','SQLREPORTS');
       sqlCat    := FIniFile.ReadString(APP,'SQLCAT','HASSQL');
 
       pw := FIniFile.ReadString(APP,'PASS','');
@@ -172,7 +192,7 @@ begin
       Writeln('');
       Writeln('example: HASUpdateMemo -install -u test -p testpass -a gemdata -l websvc'
         + ' -url https://webservice.com/SagittaWS/Transporter.asmx'
-        + ' -sqlUser sa -sqlPass abc123 -sqlServer HOU-SQLREPORTS -sqlCat HASSQL');
+        + ' -sqlUser sa -sqlPass abc123 -sqlServer HSQL -sqlCat HASSQL');
         exit;
     end
     else if (sParam = '-install') and (Paramcount = 19) then
@@ -218,13 +238,13 @@ begin
     else if (sParam = '-type') and (Paramcount <> 2) then
     begin
       Writeln('');
-      Writeln('usage: HASUpdateMemo -type "RATE CLASS CODE"');
+      Writeln('usage: HASUpdateMemo -type RATE_CLASS_CODE');
       Writeln('');
-      Writeln('example: HASUpdateMemo -type "PAY LETTERS"');
+      Writeln('example: HASUpdateMemo -type PAY_LETTERS');
       Writeln('');
-      Writeln('example: HASUpdateMemo -type "PL SURVEY"');
+      Writeln('example: HASUpdateMemo -type PL_SURVEY');
       Writeln('');
-      Writeln('example: HASUpdateMemo -type "SIC CODES"');
+      Writeln('example: HASUpdateMemo -type SIC_CODES');
       Writeln('');
       exit;
     end
@@ -322,8 +342,9 @@ begin
               writeln('Webservice test');
               client.lookup(FieldByName('CLIENTS_ID').AsInteger);
               writeln('ID = ' + IntToStr(client.AcctID));
-              writeln('Name = ' + client.AcctName);
+              writeln('Name = ' + client.ClientName);
               writeln('Code = ' + client.ClientCode);
+              logToXML(sParam + '.xml',client.DataLog);
             end;
           end;
         end;
@@ -411,6 +432,8 @@ begin
             myMemo.update
           else
             myMemo.add;
+          if DebugOn  then
+            logToXML('result.xml', myMemo.DataLog);
           s := myMemo.Log;
           DM1.adoUpdate.Parameters.ParamValues['ACTIVITIES_INSERTED_MEMOS_ID'] := myMemo.ACTIVITIES_INSERTED_MEMOS_ID;
           DM1.adoUpdate.Parameters.ParamValues['INSERTED_FLAG'] := 'Y';

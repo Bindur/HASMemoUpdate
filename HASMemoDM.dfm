@@ -3,10 +3,11 @@ object DM1: TDM1
   Height = 230
   Width = 245
   object ado1: TADOConnection
+    Connected = True
     ConnectionString = 
-      'Provider=SQLOLEDB.1;Password=j1w!s2005;Persist Security Info=Tru' +
-      'e;User ID=jlwsql;Initial Catalog=JLWSQL;Data Source=HOU-SQLREPOR' +
-      'TS'
+      'Provider=SQLOLEDB.1;Password=starksql;Persist Security Info=True' +
+      ';User ID=starksql;Initial Catalog=sagittareport;Data Source=192.' +
+      '168.1.240'
     LoginPrompt = False
     Mode = cmShareDenyNone
     Provider = 'SQLOLEDB.1'
@@ -17,8 +18,8 @@ object DM1: TDM1
     Connection = ado1
     CursorType = ctStatic
     CommandText = 
-      'select * from ACTIVITIES_INSERTED_MEMOS'#13#10'where TRAN_TYPE=:TRAN_T' +
-      'YPE and INSERTED_FLAG='#39'N'#39
+      'select * from ACTIVITIES_INSERTED_MEMOS where TRAN_TYPE=:TRAN_TY' +
+      'PE and INSERTED_FLAG='#39'N'#39
     Parameters = <
       item
         Name = 'TRAN_TYPE'

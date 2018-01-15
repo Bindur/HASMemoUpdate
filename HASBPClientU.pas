@@ -66,6 +66,7 @@ type
     property ProductID: integer read FPLID write FPLID;
     property RequestID: integer read FRQID write FRQID;
     property ClientCode: string read FClientCd write FClientCd;
+    property ClientName: string read FClientName write FClientName;
     property StateProvCd: string read FStateProvCd write FStateProvCd;
     property Dept: string read FDept write FDept;
     property Cat1: string read FType write FType;
@@ -1062,6 +1063,7 @@ begin
           rootNode := resultXML.DocumentElement;
           FBENPID        := id;
           FClientCd      := getXmlNode(rootNode,'ClientCd');
+          FLog := resultXML.XML.Text;
 
           myMap := buildMap(resultXML);
 
