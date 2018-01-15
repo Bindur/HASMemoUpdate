@@ -1,4 +1,4 @@
-program JLWUpdateMemo;
+program HASUpdateMemo;
 
 {$APPTYPE CONSOLE}
 
@@ -7,18 +7,18 @@ uses
   Registry,
   Variants,
   MidasLib,
-  JLWMemoDM in 'JLWMemoDM.pas' {DM1: TDataModule},
+  HASMemoDM in 'HASMemoDM.pas' {DM1: TDataModule},
 //  BlockCiphers in 'BlockCiphers.pas',
   SoapActivityU in 'SoapActivityU.pas',
   ADODB,
   ActiveX,
   Classes,
-  JLWClientU in 'JLWClientU.pas',
-  Transporter in 'Transporter.pas', JLWSpecialWSTypes, Soap.SOAPHTTPClient;
+  HASClientU in 'HASClientU.pas',
+  Transporter in 'Transporter.pas', HASSpecialWSTypes, Soap.SOAPHTTPClient;
 
 var
   myMemo: TSoapActivity;
-  myClient: TJLWClient;
+  myClient: THASClient;
   sDate,sParam,sUser,sPassword,sAccount,sPool,sURL,sqlUser,sqlPass,sqlServer,sqlCat: string;
   dt1,dt2: TDateTime;
 //  FBlockCipher: TBlockCipher;
@@ -27,8 +27,8 @@ var
 
 const
   ROOT      = 'Software';
-  APPROOT   = 'John L Wortham Application';
-  APP       = APPROOT + '\JLWMemoUpdate';
+  APPROOT   = 'Helix Agency Services';
+  APP       = APPROOT + '\HASMemoUpdate';
   DES       = 0;
   BlowFish  = 1;
 
@@ -135,7 +135,7 @@ begin
 
       sqlUser   := FIniFile.ReadString(APP,'SQLUSER','sa');
       sqlServer := FIniFile.ReadString(APP,'SQLSERVER','HOU-SQLREPORTS');
-      sqlCat    := FIniFile.ReadString(APP,'SQLCAT','JLWSQL');
+      sqlCat    := FIniFile.ReadString(APP,'SQLCAT','HASSQL');
 
       pw := FIniFile.ReadString(APP,'PASS','');
       if pw = '' then
@@ -169,11 +169,11 @@ begin
     begin
       Writeln('Run the following once to set up installation on current machine');
       Writeln('');
-      Writeln('usage: JLWUpdateMemo -install -u user -p password -a account -l pool -url url -sqlUser sqlUser -sqlPass sqlPass -sqlServer sqlServer');
+      Writeln('usage: HASUpdateMemo -install -u user -p password -a account -l pool -url url -sqlUser sqlUser -sqlPass sqlPass -sqlServer sqlServer');
       Writeln('');
-      Writeln('example: JLWUpdateMemo -install -u test -p testpass -a gemdata -l websvc'
-        + ' -url https://amswstest.worthaminsurance.com/SagittaWS/Transporter.asmx'
-        + ' -sqlUser sa -sqlPass abc123 -sqlServer HOU-SQLREPORTS -sqlCat JLWSQL');
+      Writeln('example: HASUpdateMemo -install -u test -p testpass -a gemdata -l websvc'
+        + ' -url https://webservice.com/SagittaWS/Transporter.asmx'
+        + ' -sqlUser sa -sqlPass abc123 -sqlServer HOU-SQLREPORTS -sqlCat HASSQL');
         exit;
     end
     else if (sParam = '-install') and (Paramcount = 19) then
@@ -219,13 +219,13 @@ begin
     else if (sParam = '-type') and (Paramcount <> 2) then
     begin
       Writeln('');
-      Writeln('usage: JLWUpdateMemo -type "RATE CLASS CODE"');
+      Writeln('usage: HASUpdateMemo -type "RATE CLASS CODE"');
       Writeln('');
-      Writeln('example: JLWUpdateMemo -type "PAY LETTERS"');
+      Writeln('example: HASUpdateMemo -type "PAY LETTERS"');
       Writeln('');
-      Writeln('example: JLWUpdateMemo -type "PL SURVEY"');
+      Writeln('example: HASUpdateMemo -type "PL SURVEY"');
       Writeln('');
-      Writeln('example: JLWUpdateMemo -type "SIC CODES"');
+      Writeln('example: HASUpdateMemo -type "SIC CODES"');
       Writeln('');
       exit;
     end
@@ -248,11 +248,11 @@ begin
   begin
     Writeln('Try one of the following options for more help');
     Writeln('');
-    Writeln('usage: JLWUpdateMemo -install');
+    Writeln('usage: HASUpdateMemo -install');
     Writeln('');
-    Writeln('usage: JLWUpdateMemo -type');
+    Writeln('usage: HASUpdateMemo -type');
     Writeln('');
-    Writeln('usage: JLWUpdateMemo -test');
+    Writeln('usage: HASUpdateMemo -test');
     Writeln('');
     exit;
   end;
@@ -295,7 +295,7 @@ begin
     // lookup test
     if test then
     begin
-      myClient := TJLWClient.Create;
+      myClient := THASClient.Create;
       myClient.AuthRec := oAuth;
       with DM1.adoDS1 do
         begin
