@@ -1,4 +1,4 @@
-unit JLWMemoDM;
+unit HASMemoDM;
 
 interface
 

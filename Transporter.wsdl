@@ -1,0 +1,2474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://amsservices.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://amsservices.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://amsservices.com/">
+      <s:element name="PassThroughReq">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="XMLinput">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PassThroughReqResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PassThroughReqResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PassThroughImp">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="XMLinput">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PassThroughImpResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PassThroughImpResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="rolodexContains">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchCriteria" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="rolodexContainsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rolodexContainsResult" type="tns:containsInfoMap" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="containsInfoMap">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMsg" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalHits" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalReturned" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="containsArray" type="tns:ArrayOfContainsArray" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfContainsArray">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="containsArray" nillable="true" type="tns:containsArray" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="containsArray">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StreetAddress" type="tns:StreetAddress" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StateProvCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContactName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Policy" type="tns:ArrayOfPolicies" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicySerial" type="tns:ArrayOfPolSerial" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telephone" type="tns:TelephoneNum" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClaimantName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FaxNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillToCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Prod" type="tns:ProducerCd" />
+          <s:element minOccurs="0" maxOccurs="1" name="Serv" type="tns:ServicerCd" />
+          <s:element minOccurs="0" maxOccurs="1" name="Stat" type="tns:ArrayOfStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="Archived" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContactMethod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SIC1Cd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SourceCd" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StreetAddress">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Addr1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Addr2" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPolicies">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Policies" nillable="true" type="tns:Policies" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Policies">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyNumber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPolSerial">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PolSerial" nillable="true" type="tns:PolSerial" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PolSerial">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PolicySerialNumber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TelephoneNum">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TelephoneNumber1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TelephoneNumber2" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProducerCd">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Producer1Cd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Producer2Cd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Producer3Cd" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ServicerCd">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Servicer1Cd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Servicer2Cd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Servicer3Cd" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Status" nillable="true" type="tns:Status" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Status">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Stat" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AuthenticationHeader" type="tns:AuthenticationHeader" />
+      <s:complexType name="AuthenticationHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Account" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Accesscode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Serverpool" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Onlinecode" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="rolodexStartsWith">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchCriteria" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="rolodexStartsWithResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rolodexStartsWithResult" type="tns:startsWithInfoMap" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="startsWithInfoMap">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMsg" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalHits" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalReturned" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="startsWithArray" type="tns:ArrayOfStartsWithArray" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfStartsWithArray">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="startsWithArray" nillable="true" type="tns:startsWithArray" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="startsWithArray">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Addr1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StateProvCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Producer1Cd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Servicer1Cd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Archived" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContactMethod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Note" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SIC1Cd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SourceCd" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="clientInsert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClientImportRecord" type="tns:clientInsertMap" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="clientInsertMap">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DivisionNumber" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DivisionNumberWithLeadingZero" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillToCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Addr1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Addr2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostCd" type="tns:Post" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StateProvCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Phone1Number" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Phone1ExtensionNumber" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Phone2Number" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Phone2ExtensionNumber" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FaxNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContactMethod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailAddr" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WebSiteLink" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProducerCd" type="tns:ProducerCd" />
+          <s:element minOccurs="0" maxOccurs="1" name="ServicerCd" type="tns:ServicerCd" />
+          <s:element minOccurs="0" maxOccurs="1" name="CatCd" type="tns:CatCd" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusCd" type="tns:StatusCd" />
+          <s:element minOccurs="0" maxOccurs="1" name="SicCd" type="tns:SicCd" />
+          <s:element minOccurs="0" maxOccurs="1" name="CommentaryRemarkText" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreditTerms" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NetCommissionPct" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="SourceCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SourceDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="LegalEntityCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FEIN" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateBusinessStarted" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="InspectionContact" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="InspectionPhoneNumber" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="InspectionPhoneExtensionNumber" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="BusinessNature" type="tns:BusinessNature" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountingContact" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountingPhoneNumber" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountingPhoneExtensionNumber" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomTrapdoor" type="tns:ArrayOfCustomTrapdoor" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Post">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalExtensionCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CatCd">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Cat1Cd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cat2Cd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cat3Cd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cat4Cd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cat5Cd" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StatusCd">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="StatusCdValue" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SicCd">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SicCdValue" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BusinessNature">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BusinessNatureValue" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCustomTrapdoor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CustomTrapdoor" nillable="true" type="tns:CustomTrapdoor" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CustomTrapdoor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CustomKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomData" type="tns:ArrayOfCustomData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCustomData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CustomData" nillable="true" type="tns:CustomData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CustomData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CustomField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomValue" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="clientInsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="clientInsertResult" type="tns:Results" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Results">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SagittaId" nillable="true" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="SagittaCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Errors" type="tns:ArrayOfErrors" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfErrors">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Errors" nillable="true" type="tns:Errors" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Errors">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="clientUpdate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClientUpdateRecord" type="tns:clientUpdateMap" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="clientUpdateMap">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SagittaId" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DivisionNumber" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DivisionNumberWithLeadingZero" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DivisionNumberIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillToCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BillToCdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReferenceCdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Addr1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Addr2" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Addr2IsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostCd" type="tns:PostUpdate" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StateProvCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Phone1Number" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Phone1NumberIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Phone1ExtensionNumber" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Phone1ExtensionNumberIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Phone2Number" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Phone2NumberIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Phone2ExtensionNumber" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Phone2ExtensionNumberIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="FaxNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FaxNumberIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContactMethod" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContactMethodIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailAddr" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmailAddrIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="WebSiteLink" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="WebSiteLinkIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProducerCd" type="tns:ProducerCdUpdate" />
+          <s:element minOccurs="0" maxOccurs="1" name="ServicerCd" type="tns:ServicerCdUpdate" />
+          <s:element minOccurs="0" maxOccurs="1" name="CatCd" type="tns:CatCdUpdate" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusCd" type="tns:StatusCdUpdate" />
+          <s:element minOccurs="0" maxOccurs="1" name="SicCd" type="tns:SicCdUpdate" />
+          <s:element minOccurs="0" maxOccurs="1" name="CommentaryRemarkText" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CommentaryRemarkTextIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreditTerms" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NetCommissionPct" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="NetCommissionPctIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="SourceCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SourceCdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SourceDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="SourceDtIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="LegalEntityCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LegalEntityCdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="FEIN" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="FEINIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateBusinessStarted" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateBusinessStartedIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="InspectionContact" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="InspectionContactIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="InspectionPhoneNumber" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="InspectionPhoneNumberIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="InspectionPhoneExtensionNumber" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="InspectionPhoneExtensionNumberIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="BusinessNature" type="tns:BusinessNatureUpdate" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountingContact" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountingContactIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountingPhoneNumber" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountingPhoneNumberIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountingPhoneExtensionNumber" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountingPhoneExtensionNumberIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomTrapdoor" type="tns:ArrayOfCustomTrapdoor" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PostUpdate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PostalCodeIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalExtensionCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PostalExtensionCodeIsEmpty" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProducerCdUpdate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Producer1Cd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Producer2Cd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Producer2CdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Producer3Cd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Producer3CdIsEmpty" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ServicerCdUpdate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Servicer1Cd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Servicer2Cd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Servicer2CdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Servicer3Cd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Servicer3CdIsEmpty" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CatCdUpdate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Cat1Cd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cat1CdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cat2Cd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cat2CdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cat3Cd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cat3CdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cat4Cd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cat4CdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cat5Cd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cat5CdIsEmpty" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StatusCdUpdate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="StatusCdValue" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="StatusCdValueIsEmpty" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SicCdUpdate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SicCdValue" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="SicCdValueIsEmpty" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BusinessNatureUpdate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BusinessNatureValue" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="BusinessNatureValueIsEmpty" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="clientUpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="clientUpdateResult" type="tns:Results" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="policyInsert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PolicyImportRecord" type="tns:policyInsertMap" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="policyInsertMap">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientInfo" type="tns:ClientInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionInformation" type="tns:NBSTransactionInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillToCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NamedInsured" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyRemarkText" type="tns:PolicyRemarkInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="InsurerName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoverageCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyContractTermCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyEffectiveDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyEffectiveLocalStandardTimeInd" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyExpirationDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyExpirationLocalStandardTimeInd" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyOriginalInceptionDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="BinderEffectiveDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="BinderStartTimeInd" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="BinderExpirationDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="BinderExpirationTimeInd" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillTypeCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BinderPurposeCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BOREffectiveDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="BORExpirationDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastCommissionPct" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Producer" type="tns:ProducerCd" />
+          <s:element minOccurs="1" maxOccurs="1" name="DivisionCd" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DivisionCodeWithLeadingZero" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StateProvCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuditTermCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ServicerCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepartmentCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SICCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateBusinessStarted" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EstimatedAnnualPremium" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="EstimatedAnnualCommission" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="EstimatedAnnualCommissionPct" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="NatureBusinessCd" type="tns:NatureBusinessInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="GeneralInfoRemarkText" type="tns:GeneralInfoRemarkInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="PersonalSupplementalInfo" type="tns:PersonalSupplementalInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="InsuredInfo" type="tns:InsuredInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="General1QuestionInfo" type="tns:General1QuestionInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoInsuredInfo" type="tns:CoInsuredInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="BusinessIncomeTypeBusinessCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyTypeCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PayeeCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyDesc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicySource" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CarrierProducerSubCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomTrapdoor" type="tns:ArrayOfCustomTrapdoor" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ClientInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ClientId" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NBSTransactionInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionType" type="tns:InsertTransactionType" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FollowupDays" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="InsertTransactionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="NBS" />
+          <s:enumeration value="RWL" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="PolicyRemarkInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyRemarkValue" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NatureBusinessInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="NatureBusinessValue" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GeneralInfoRemarkInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="GeneralInfoRemarkValue" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PersonalSupplementalInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="NumCurrentAddrYrs" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreviousAddr1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreviousAddr2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreviousPostalCd" type="tns:PreviousPostalInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreviousCity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreviousStateProvCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CurrentResidenceDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PreviousResidenceDt" nillable="true" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PreviousPostalInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PreviousPostalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreviousPostalExtensionCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InsuredInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="BirthDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaxId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumResidentsInHousehold" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NamedIndividuals" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaritalStatusCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OccupationClassCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OccupationDesc" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LengthTimeEmployed" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HouseholdIncomeAmt" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CommercialName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LengthTimeWithPreviousEmployer" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LengthTimeCurrentOccupation" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="General1QuestionInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="NumVehsInHousehold" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LengthTimeKnownByAgentBroker" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AutoClubMemberYesNoCd" nillable="true" type="tns:YesNoVal" />
+          <s:element minOccurs="1" maxOccurs="1" name="UMPDRejectionYesNoCd" nillable="true" type="tns:YesNoVal" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnderinsMotoristRejectionYesNoCd" nillable="true" type="tns:YesNoVal" />
+          <s:element minOccurs="1" maxOccurs="1" name="AnyLossesAccidentsConvictionsIndYesNoCd" nillable="true" type="tns:YesNoVal" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResidenceOwnedRentedCd" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="YesNoVal">
+        <s:restriction base="s:string">
+          <s:enumeration value="Y" />
+          <s:enumeration value="N" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="CoInsuredInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CoInsuredBirthDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoInsuredTaxId" nillable="true" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoInsuredMaritalStatusCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoInsuredOccupationClassCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoInsuredOccupationDesc" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoInsuredLengthTimeWithCurrentEmployer" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoInsuredCommercialName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoInsuredLengthTimeWithPreviousEmployer" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoInsuredLengthTimeCurrentOccupation" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="policyInsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="policyInsertResult" type="tns:Results" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="policyUpdate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PolicyUpdateRecord" type="tns:policyUpdateMap" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="policyUpdateMap">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientInfo" type="tns:ClientInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionInformation" type="tns:TransactionInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyId" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyNumberIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillToCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NamedInsured" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NamedInsuredIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyRemarkText" type="tns:PolicyRemarkInfoUpdate" />
+          <s:element minOccurs="0" maxOccurs="1" name="InsurerName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoverageCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyContractTermCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NewRenewInd" nillable="true" type="tns:StatusVal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyEffectiveDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyEffectiveLocalStandardTimeInd" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyExpirationDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyExpirationLocalStandardTimeInd" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyOriginalInceptionDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="BinderEffectiveDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="BinderEffectiveDtIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="BinderStartTimeInd" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="BinderStartTimeIndIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="BinderExpirationDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="BinderExpirationDtIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="BinderExpirationTimeInd" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="BinderExpirationTimeIndIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillTypeCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BinderPurposeCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BinderPurposeCdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="BOREffectiveDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="BOREffectiveDtIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="BORExpirationDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="BORExpirationDtIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastCommissionPct" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastCommissionPctIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CancellationTypeCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CancDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="CancReasonCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CancEvidence" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CancNonrenewRenewDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CancLastDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CancLastDtIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Producer" type="tns:ProducerCdUpdate" />
+          <s:element minOccurs="1" maxOccurs="1" name="DivisionCd" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DivisionCodeWithLeadingZero" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StateProvCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StateProvCdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuditTermCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AuditTermCdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ServicerCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepartmentCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReinstateDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReinstateReasonCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SICCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SICCdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateBusinessStarted" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateBusinessStartedIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="EstimatedAnnualPremium" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="EstimatedAnnualPremiumIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="EstimatedAnnualCommission" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="EstimatedAnnualCommissionIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="EstimatedAnnualCommissionPct" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="EstimatedAnnualCommissionPctIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="NatureBusinessCd" type="tns:NatureBusinessInfoUpdate" />
+          <s:element minOccurs="0" maxOccurs="1" name="GeneralInfoRemarkText" type="tns:GeneralInfoRemarkInfoUpdate" />
+          <s:element minOccurs="0" maxOccurs="1" name="PersonalSupplementalInfo" type="tns:PersonalSupplementalInfoUpdate" />
+          <s:element minOccurs="0" maxOccurs="1" name="InsuredInfo" type="tns:InsuredInfoUpdate" />
+          <s:element minOccurs="0" maxOccurs="1" name="General1QuestionInfo" type="tns:General1QuestionInfoUpdate" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoInsuredInfo" type="tns:CoInsuredInfoUpdate" />
+          <s:element minOccurs="0" maxOccurs="1" name="BusinessIncomeTypeBusinessCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BusinessIncomeTypeBusinessCdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyTypeCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyTypeCdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PayeeCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyDesc" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyDescIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicySource" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicySourceIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CarrierProducerSubCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CarrierProducerSubCodeIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomTrapdoor" type="tns:ArrayOfCustomTrapdoor" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TransactionInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionType" type="tns:UpdateTransactionType" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionDescription" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FollowupDays" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="UpdateTransactionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="PCH" />
+          <s:enumeration value="XLC" />
+          <s:enumeration value="REI" />
+          <s:enumeration value="RWL" />
+          <s:enumeration value="REW" />
+          <s:enumeration value="PAD" />
+          <s:enumeration value="RWX" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="PolicyRemarkInfoUpdate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyRemarkValue" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyRemarkValueIsEmpty" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="StatusVal">
+        <s:restriction base="s:string">
+          <s:enumeration value="NEW" />
+          <s:enumeration value="REN" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="NatureBusinessInfoUpdate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="NatureBusinessValue" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="NatureBusinessValueIsEmpty" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GeneralInfoRemarkInfoUpdate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="GeneralInfoRemarkValue" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="GeneralInfoRemarkValueIsEmpty" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PersonalSupplementalInfoUpdate">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="NumCurrentAddrYrs" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumCurrentAddrYrsIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreviousAddr1" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PreviousAddr1IsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreviousAddr2" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PreviousAddr2IsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreviousPostalCd" type="tns:PreviousPostalInfoUpdate" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreviousCity" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PreviousCityIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreviousStateProvCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PreviousStateProvCdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CurrentResidenceDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CurrentResidenceDtIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="PreviousResidenceDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PreviousResidenceDtIsEmpty" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PreviousPostalInfoUpdate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PreviousPostalCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PreviousPostalCodeIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreviousPostalExtensionCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PreviousPostalExtensionCodeIsEmpty" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InsuredInfoUpdate">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="BirthDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="BirthDtIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaxId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaxIdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumResidentsInHousehold" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumResidentsInHouseholdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="NamedIndividuals" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NamedIndividualsIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaritalStatusCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaritalStatusCdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="OccupationClassCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OccupationClassCdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="OccupationDesc" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OccupationDescIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="LengthTimeEmployed" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LengthTimeEmployedIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HouseholdIncomeAmt" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HouseholdIncomeAmtIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CommercialName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CommercialNameIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="LengthTimeWithPreviousEmployer" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LengthTimeWithPreviousEmployerIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="LengthTimeCurrentOccupation" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LengthTimeCurrentOccupationIsEmpty" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="General1QuestionInfoUpdate">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="NumVehsInHousehold" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumVehsInHouseholdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="LengthTimeKnownByAgentBroker" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LengthTimeKnownByAgentBrokerIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AutoClubMemberYesNoCd" nillable="true" type="tns:YesNoVal" />
+          <s:element minOccurs="1" maxOccurs="1" name="AutoClubMemberYesNoCdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="UMPDRejectionYesNoCd" nillable="true" type="tns:YesNoVal" />
+          <s:element minOccurs="1" maxOccurs="1" name="UMPDRejectionYesNoCdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnderinsMotoristRejectionYesNoCd" nillable="true" type="tns:YesNoVal" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnderinsMotoristRejectionYesNoCdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AnyLossesAccidentsConvictionsIndYesNoCd" nillable="true" type="tns:YesNoVal" />
+          <s:element minOccurs="1" maxOccurs="1" name="AnyLossesAccidentsConvictionsIndYesNoCdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResidenceOwnedRentedCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResidenceOwnedRentedCdIsEmpty" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CoInsuredInfoUpdate">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CoInsuredBirthDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoInsuredBirthDtIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoInsuredTaxId" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoInsuredTaxIdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoInsuredMaritalStatusCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoInsuredMaritalStatusCdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoInsuredOccupationClassCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoInsuredOccupationClassCdIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoInsuredOccupationDesc" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoInsuredOccupationDescIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoInsuredLengthTimeWithCurrentEmployer" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoInsuredLengthTimeWithCurrentEmployerIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoInsuredCommercialName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoInsuredCommercialNameIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoInsuredLengthTimeWithPreviousEmployer" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoInsuredLengthTimeWithPreviousEmployerIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoInsuredLengthTimeCurrentOccupation" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoInsuredLengthTimeCurrentOccupationIsEmpty" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="policyUpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="policyUpdateResult" type="tns:Results" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="policyDelete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="PolicyId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="StaffUser" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="policyDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="policyDeleteResult" type="tns:Results" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="commissionStatementInsert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CommissionStatementRecord" type="tns:commissionStatementInsertMap" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="commissionStatementInsertMap">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Org" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StatementDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DepositDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="CheckNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientId" nillable="true" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyId" nillable="true" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Division" nillable="true" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="DivisionWithLeadingZero" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoverageCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyEffectiveDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyExpirationDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionEffectiveDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionTypeCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="GrossPremiumAmt" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CommissionPct" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CommissionAmt" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="OverrideInd" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProducerInfo" type="tns:ArrayOfProducerInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatementAssociation" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput2" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProducerInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProducerInfo" nillable="true" type="tns:ProducerInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProducerInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProducerCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProducerPct" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProducerAmt" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="commissionStatementInsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="commissionStatementInsertResult" type="tns:Results" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cashReceiptInsert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CashReceiptRecord" type="tns:cashReceiptInsertMap" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="cashReceiptInsertMap">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Division" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Bank" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DepositDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntClientCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtClientCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CheckNo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckAmt" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="CheckComment" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceInformation" type="tns:ArrayOfInvoiceInformation" />
+          <s:element minOccurs="0" maxOccurs="1" name="GLInformation" type="tns:ArrayOfGLInformation" />
+          <s:element minOccurs="0" maxOccurs="1" name="BatchNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="COADivFlag" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInvoiceInformation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InvoiceInformation" nillable="true" type="tns:InvoiceInformation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InvoiceInformation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceNo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="InvoiceAmt" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfGLInformation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GLInformation" nillable="true" type="tns:GLInformation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GLInformation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="GLAccountNo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="GLAmount" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="cashReceiptInsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cashReceiptInsertResult" type="tns:Results" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="customProcessUsher">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CustomProcessUsherRecord" type="tns:customProcessUsherMap" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="customProcessUsherMap">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="usherName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="waitForResponse" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UsherInformation" type="tns:ArrayOfUsherInformation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfUsherInformation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UsherInformation" nillable="true" type="tns:UsherInformation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UsherInformation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="usherKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="usherData" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="customProcessUsherResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="customProcessUsherResult" type="tns:Results" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="invoiceInsert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invoiceRecord" type="tns:invoiceInsertMap" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="invoiceInsertMap">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyId" nillable="true" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyTransCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyTransEffDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillToCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BillMethod" type="tns:PolBillMethod" />
+          <s:element minOccurs="1" maxOccurs="1" name="InvoiceEffDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Division" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepartmentCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ServicerCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoverageCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NetPct" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="NetBillBrokerOption" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DueDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceStatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SuppressAutoPost" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="InstallmentNumber" nillable="true" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InternalComments" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PayeeData" type="tns:ArrayOfPayeeData" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProducerData" type="tns:ArrayOfProducerData" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionData" type="tns:TransactionData" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomTrapdoor" type="tns:ArrayOfCustomTrapdoor" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="PolBillMethod">
+        <s:restriction base="s:string">
+          <s:enumeration value="A" />
+          <s:enumeration value="C" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfPayeeData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PayeeData" nillable="true" type="tns:PayeeData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PayeeData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="InsurerCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PayeeCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PayeePct" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PayeeAmt" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="AgencyPct" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="AgencyAmt" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProducerData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProducerData" nillable="true" type="tns:ProducerData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProducerData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProducerCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProducerCommissionType" nillable="true" type="tns:ProducerCommissionType" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProducerPct" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProducerAmt" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="RelPayFlag" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ProducerCommissionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="S" />
+          <s:enumeration value="P" />
+          <s:enumeration value="F" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="TransactionData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PrimaryTransactionCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PremiumAmt" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="AddlTransactions" type="tns:ArrayOfAddlTransactions" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAddlTransactions">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AddlTransactions" nillable="true" type="tns:AddlTransactions" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AddlTransactions">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransAmount" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoverageCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PayeeCd" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="invoiceInsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invoiceInsertResult" type="tns:Results" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="paymentInsert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="paymentRecord" type="tns:paymentInsertMap" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="paymentInsertMap">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Division" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VendorCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BankCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PeriodEndDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="CheckNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckAmount" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="CheckComment" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UseVendorAlternateAddress" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="VendorAlternateAddressLineNo" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="UseVendorTempAddress" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="VendorTempAddress" type="tns:VendorTempAddress" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoicePostings" type="tns:ArrayOfInvoicePostingsInsert" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomTrapdoor" type="tns:ArrayOfCustomTrapdoor" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExecuteImmediateUpdate" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="VendorTempAddress">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StateProvinceCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInvoicePostingsInsert">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InvoicePostingsInsert" nillable="true" type="tns:InvoicePostingsInsert" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InvoicePostingsInsert">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PayableId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PostAmount" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="SplitAdjust" nillable="true" type="tns:SplitAdjust" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SplitAdjust">
+        <s:restriction base="s:string">
+          <s:enumeration value="S" />
+          <s:enumeration value="A" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="paymentInsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="paymentInsertResult" type="tns:Results" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="paymentUpdate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="paymentRecord" type="tns:paymentUpdateMap" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="paymentUpdateMap">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BankCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PeriodEndDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="CheckNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckNumberIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CheckComment" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckCommentIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="UseVendorDefaultAddress" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="UseVendorAlternateAddress" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="VendorAlternateAddressLineNo" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="UseVendorTempAddress" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="VendorTempAddress" type="tns:VendorTempAddress" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoicePostings" type="tns:ArrayOfInvoicePostingsUpdate" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomTrapdoor" type="tns:ArrayOfCustomTrapdoor" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExecuteImmediateUpdate" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInvoicePostingsUpdate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InvoicePostingsUpdate" nillable="true" type="tns:InvoicePostingsUpdate" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InvoicePostingsUpdate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PayableId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PostAmount" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="SplitAdjust" nillable="true" type="tns:SplitAdjust" />
+          <s:element minOccurs="1" maxOccurs="1" name="DeleteInvoicePosting" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="paymentUpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="paymentUpdateResult" type="tns:Results" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insurerReceiptInsert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="insurerReceiptRecord" type="tns:insurerReceiptInsertMap" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="insurerReceiptInsertMap">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Division" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VendorCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BankCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DepositDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PeriodEndDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="CheckNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckAmount" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="CheckComment" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="HoldRelease" nillable="true" type="tns:HoldRelease" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExecuteImmediatePost" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="InsurerReceivablePostings" type="tns:ArrayOfInsurerReceivablePostingsInsert" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomTrapdoor" type="tns:ArrayOfCustomTrapdoor" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="HoldRelease">
+        <s:restriction base="s:string">
+          <s:enumeration value="H" />
+          <s:enumeration value="R" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfInsurerReceivablePostingsInsert">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InsurerReceivablePostingsInsert" nillable="true" type="tns:InsurerReceivablePostingsInsert" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InsurerReceivablePostingsInsert">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="InsurerReceivableId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PostAmount" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="SplitAdjust" nillable="true" type="tns:SplitAdjust" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="insurerReceiptInsertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="insurerReceiptInsertResult" type="tns:Results" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insurerReceiptUpdate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="insurerReceiptRecord" type="tns:insurerReceiptUpdateMap" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="insurerReceiptUpdateMap">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InsurerReceiptId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BankCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DepositDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PeriodEndDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="CheckNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckAmount" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckAmountIsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CheckComment" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckCommentIsEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HoldRelease" nillable="true" type="tns:HoldRelease" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExecuteImmediatePost" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="InsurerReceivablePostings" type="tns:ArrayOfInsurerReceivablePostingsUpdate" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomTrapdoor" type="tns:ArrayOfCustomTrapdoor" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInsurerReceivablePostingsUpdate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InsurerReceivablePostingsUpdate" nillable="true" type="tns:InsurerReceivablePostingsUpdate" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InsurerReceivablePostingsUpdate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="InsurerReceivableId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PostAmount" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="SplitAdjust" nillable="true" type="tns:SplitAdjust" />
+          <s:element minOccurs="1" maxOccurs="1" name="DeleteInsurerReceivablePosting" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="insurerReceiptUpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="insurerReceiptUpdateResult" type="tns:Results" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insurerReceiptDelete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="insurerReceiptRecord" type="tns:insurerReceiptDeleteMap" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="insurerReceiptDeleteMap">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InsurerReceiptId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomTrapdoor" type="tns:ArrayOfCustomTrapdoor" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="insurerReceiptDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="insurerReceiptDeleteResult" type="tns:Results" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="invoiceVoid">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invoiceVoidRecord" type="tns:invoiceVoidInsertMap" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="invoiceVoidInsertMap">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput2" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="invoiceVoidResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invoiceVoidResult" type="tns:VoidResults" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VoidResults">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VoidInvoiceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Errors" type="tns:ArrayOfErrors" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceInfo" type="tns:InvoiceInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InvoiceInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyId" nillable="true" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EffectiveDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EntryDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillToCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Division" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepartmentCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DueDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ServicerCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionData" type="tns:ArrayOfInvoiceTransactionData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInvoiceTransactionData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InvoiceTransactionData" nillable="true" type="tns:InvoiceTransactionData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InvoiceTransactionData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoverageCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionAmt" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="AgencyAmt" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="AgencyPct" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProducerCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProducerAmt" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProducerPct" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="InsurerCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PayeeCd" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="invoiceDelete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invoiceDeleteRecord" type="tns:invoiceDeleteInsertMap" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="invoiceDeleteInsertMap">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput2" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="invoiceDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invoiceDeleteResult" type="tns:DeleteResults" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DeleteResults">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Errors" type="tns:ArrayOfErrors" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="invoicePost">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invoicePostRecord" type="tns:invoicePostInsertMap" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="invoicePostInsertMap">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput2" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="invoicePostResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invoicePostResult" type="tns:PostResults" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PostResults">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Errors" type="tns:ArrayOfErrors" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="invoiceGetByCriteriaV1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invoiceGetByCriteria" type="tns:InvoiceGetByCriteria" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InvoiceGetByCriteria">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceId" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyId" type="tns:ArrayOfLong" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceStatus" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillToCd" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientCd" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartInvoiceDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndInvoiceDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartInvoiceEffDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndInvoiceEffDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DueDateSort" type="tns:SortType" />
+          <s:element minOccurs="1" maxOccurs="1" name="FirstResult" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxResults" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput2" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfLong">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="long" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SortType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Ascending" />
+          <s:enumeration value="Descending" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="invoiceGetByCriteriaV1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invoiceGetByCriteriaV1Result" type="tns:InvoiceGetByCriteriaResultsV1" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InvoiceGetByCriteriaResultsV1">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfResults" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceInfo" type="tns:ArrayOfInvoiceInfoByCriteriaV1" />
+          <s:element minOccurs="0" maxOccurs="1" name="Errors" type="tns:ArrayOfErrors" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInvoiceInfoByCriteriaV1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InvoiceInfoByCriteriaV1" nillable="true" type="tns:InvoiceInfoByCriteriaV1" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InvoiceInfoByCriteriaV1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceStatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyTransactionCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PolicyTransactionEffectiveDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="InvoiceEffectiveDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EntryDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillToCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Division" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepartmentCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DueDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ServicerCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionData" type="tns:ArrayOfInvoiceTransactionInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentData" type="tns:ArrayOfInvoicePaymentInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProducerPaymentData" type="tns:ArrayOfProducerPaymentInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInvoiceTransactionInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InvoiceTransactionInfo" nillable="true" type="tns:InvoiceTransactionInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InvoiceTransactionInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionAmt" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoverageCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PayeeCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InsurerCd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AgencyAmt" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProducerCd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProducerDivision" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProducerAmt" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInvoicePaymentInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InvoicePaymentInfo" nillable="true" type="tns:InvoicePaymentInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InvoicePaymentInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentMethod" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PaymentAmt" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="CheckNum" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProducerPaymentInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProducerPaymentInfo" nillable="true" type="tns:ProducerPaymentInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProducerPaymentInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProducerCheckNum" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProducerCheckDt" nillable="true" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="invoiceGetPdf">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invoicePdfRecord" type="tns:invoicePdfMap" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="invoicePdfMap">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInput2" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="invoiceGetPdfResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invoiceGetPdfResult" type="tns:PDFResults" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PDFResults">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Errors" type="tns:ArrayOfErrors" />
+          <s:element minOccurs="0" maxOccurs="1" name="EncodedInvoicePDF" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="importResults">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="importResultsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="importResultsResult" type="tns:Results" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="PassThroughReqSoapIn">
+    <wsdl:part name="parameters" element="tns:PassThroughReq" />
+  </wsdl:message>
+  <wsdl:message name="PassThroughReqSoapOut">
+    <wsdl:part name="parameters" element="tns:PassThroughReqResponse" />
+  </wsdl:message>
+  <wsdl:message name="PassThroughImpSoapIn">
+    <wsdl:part name="parameters" element="tns:PassThroughImp" />
+  </wsdl:message>
+  <wsdl:message name="PassThroughImpSoapOut">
+    <wsdl:part name="parameters" element="tns:PassThroughImpResponse" />
+  </wsdl:message>
+  <wsdl:message name="rolodexContainsSoapIn">
+    <wsdl:part name="parameters" element="tns:rolodexContains" />
+  </wsdl:message>
+  <wsdl:message name="rolodexContainsSoapOut">
+    <wsdl:part name="parameters" element="tns:rolodexContainsResponse" />
+  </wsdl:message>
+  <wsdl:message name="rolodexContainsAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="rolodexStartsWithSoapIn">
+    <wsdl:part name="parameters" element="tns:rolodexStartsWith" />
+  </wsdl:message>
+  <wsdl:message name="rolodexStartsWithSoapOut">
+    <wsdl:part name="parameters" element="tns:rolodexStartsWithResponse" />
+  </wsdl:message>
+  <wsdl:message name="rolodexStartsWithAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="clientInsertSoapIn">
+    <wsdl:part name="parameters" element="tns:clientInsert" />
+  </wsdl:message>
+  <wsdl:message name="clientInsertSoapOut">
+    <wsdl:part name="parameters" element="tns:clientInsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="clientInsertAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="clientUpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:clientUpdate" />
+  </wsdl:message>
+  <wsdl:message name="clientUpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:clientUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="clientUpdateAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="policyInsertSoapIn">
+    <wsdl:part name="parameters" element="tns:policyInsert" />
+  </wsdl:message>
+  <wsdl:message name="policyInsertSoapOut">
+    <wsdl:part name="parameters" element="tns:policyInsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="policyInsertAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="policyUpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:policyUpdate" />
+  </wsdl:message>
+  <wsdl:message name="policyUpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:policyUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="policyUpdateAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="policyDeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:policyDelete" />
+  </wsdl:message>
+  <wsdl:message name="policyDeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:policyDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="policyDeleteAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="commissionStatementInsertSoapIn">
+    <wsdl:part name="parameters" element="tns:commissionStatementInsert" />
+  </wsdl:message>
+  <wsdl:message name="commissionStatementInsertSoapOut">
+    <wsdl:part name="parameters" element="tns:commissionStatementInsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="commissionStatementInsertAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="cashReceiptInsertSoapIn">
+    <wsdl:part name="parameters" element="tns:cashReceiptInsert" />
+  </wsdl:message>
+  <wsdl:message name="cashReceiptInsertSoapOut">
+    <wsdl:part name="parameters" element="tns:cashReceiptInsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="cashReceiptInsertAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="customProcessUsherSoapIn">
+    <wsdl:part name="parameters" element="tns:customProcessUsher" />
+  </wsdl:message>
+  <wsdl:message name="customProcessUsherSoapOut">
+    <wsdl:part name="parameters" element="tns:customProcessUsherResponse" />
+  </wsdl:message>
+  <wsdl:message name="customProcessUsherAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="invoiceInsertSoapIn">
+    <wsdl:part name="parameters" element="tns:invoiceInsert" />
+  </wsdl:message>
+  <wsdl:message name="invoiceInsertSoapOut">
+    <wsdl:part name="parameters" element="tns:invoiceInsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="invoiceInsertAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="paymentInsertSoapIn">
+    <wsdl:part name="parameters" element="tns:paymentInsert" />
+  </wsdl:message>
+  <wsdl:message name="paymentInsertSoapOut">
+    <wsdl:part name="parameters" element="tns:paymentInsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="paymentInsertAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="paymentUpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:paymentUpdate" />
+  </wsdl:message>
+  <wsdl:message name="paymentUpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:paymentUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="paymentUpdateAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="insurerReceiptInsertSoapIn">
+    <wsdl:part name="parameters" element="tns:insurerReceiptInsert" />
+  </wsdl:message>
+  <wsdl:message name="insurerReceiptInsertSoapOut">
+    <wsdl:part name="parameters" element="tns:insurerReceiptInsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="insurerReceiptInsertAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="insurerReceiptUpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:insurerReceiptUpdate" />
+  </wsdl:message>
+  <wsdl:message name="insurerReceiptUpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:insurerReceiptUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="insurerReceiptUpdateAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="insurerReceiptDeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:insurerReceiptDelete" />
+  </wsdl:message>
+  <wsdl:message name="insurerReceiptDeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:insurerReceiptDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="insurerReceiptDeleteAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="invoiceVoidSoapIn">
+    <wsdl:part name="parameters" element="tns:invoiceVoid" />
+  </wsdl:message>
+  <wsdl:message name="invoiceVoidSoapOut">
+    <wsdl:part name="parameters" element="tns:invoiceVoidResponse" />
+  </wsdl:message>
+  <wsdl:message name="invoiceVoidAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="invoiceDeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:invoiceDelete" />
+  </wsdl:message>
+  <wsdl:message name="invoiceDeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:invoiceDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="invoiceDeleteAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="invoicePostSoapIn">
+    <wsdl:part name="parameters" element="tns:invoicePost" />
+  </wsdl:message>
+  <wsdl:message name="invoicePostSoapOut">
+    <wsdl:part name="parameters" element="tns:invoicePostResponse" />
+  </wsdl:message>
+  <wsdl:message name="invoicePostAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="invoiceGetByCriteriaV1SoapIn">
+    <wsdl:part name="parameters" element="tns:invoiceGetByCriteriaV1" />
+  </wsdl:message>
+  <wsdl:message name="invoiceGetByCriteriaV1SoapOut">
+    <wsdl:part name="parameters" element="tns:invoiceGetByCriteriaV1Response" />
+  </wsdl:message>
+  <wsdl:message name="invoiceGetByCriteriaV1AuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="invoiceGetPdfSoapIn">
+    <wsdl:part name="parameters" element="tns:invoiceGetPdf" />
+  </wsdl:message>
+  <wsdl:message name="invoiceGetPdfSoapOut">
+    <wsdl:part name="parameters" element="tns:invoiceGetPdfResponse" />
+  </wsdl:message>
+  <wsdl:message name="invoiceGetPdfAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="importResultsSoapIn">
+    <wsdl:part name="parameters" element="tns:importResults" />
+  </wsdl:message>
+  <wsdl:message name="importResultsSoapOut">
+    <wsdl:part name="parameters" element="tns:importResultsResponse" />
+  </wsdl:message>
+  <wsdl:message name="importResultsAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:portType name="TransporterSoap">
+    <wsdl:operation name="PassThroughReq">
+      <wsdl:input message="tns:PassThroughReqSoapIn" />
+      <wsdl:output message="tns:PassThroughReqSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PassThroughImp">
+      <wsdl:input message="tns:PassThroughImpSoapIn" />
+      <wsdl:output message="tns:PassThroughImpSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="rolodexContains">
+      <wsdl:input message="tns:rolodexContainsSoapIn" />
+      <wsdl:output message="tns:rolodexContainsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="rolodexStartsWith">
+      <wsdl:input message="tns:rolodexStartsWithSoapIn" />
+      <wsdl:output message="tns:rolodexStartsWithSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="clientInsert">
+      <wsdl:input message="tns:clientInsertSoapIn" />
+      <wsdl:output message="tns:clientInsertSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="clientUpdate">
+      <wsdl:input message="tns:clientUpdateSoapIn" />
+      <wsdl:output message="tns:clientUpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="policyInsert">
+      <wsdl:input message="tns:policyInsertSoapIn" />
+      <wsdl:output message="tns:policyInsertSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="policyUpdate">
+      <wsdl:input message="tns:policyUpdateSoapIn" />
+      <wsdl:output message="tns:policyUpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="policyDelete">
+      <wsdl:input message="tns:policyDeleteSoapIn" />
+      <wsdl:output message="tns:policyDeleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="commissionStatementInsert">
+      <wsdl:input message="tns:commissionStatementInsertSoapIn" />
+      <wsdl:output message="tns:commissionStatementInsertSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cashReceiptInsert">
+      <wsdl:input message="tns:cashReceiptInsertSoapIn" />
+      <wsdl:output message="tns:cashReceiptInsertSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="customProcessUsher">
+      <wsdl:input message="tns:customProcessUsherSoapIn" />
+      <wsdl:output message="tns:customProcessUsherSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="invoiceInsert">
+      <wsdl:input message="tns:invoiceInsertSoapIn" />
+      <wsdl:output message="tns:invoiceInsertSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="paymentInsert">
+      <wsdl:input message="tns:paymentInsertSoapIn" />
+      <wsdl:output message="tns:paymentInsertSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="paymentUpdate">
+      <wsdl:input message="tns:paymentUpdateSoapIn" />
+      <wsdl:output message="tns:paymentUpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="insurerReceiptInsert">
+      <wsdl:input message="tns:insurerReceiptInsertSoapIn" />
+      <wsdl:output message="tns:insurerReceiptInsertSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="insurerReceiptUpdate">
+      <wsdl:input message="tns:insurerReceiptUpdateSoapIn" />
+      <wsdl:output message="tns:insurerReceiptUpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="insurerReceiptDelete">
+      <wsdl:input message="tns:insurerReceiptDeleteSoapIn" />
+      <wsdl:output message="tns:insurerReceiptDeleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="invoiceVoid">
+      <wsdl:input message="tns:invoiceVoidSoapIn" />
+      <wsdl:output message="tns:invoiceVoidSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="invoiceDelete">
+      <wsdl:input message="tns:invoiceDeleteSoapIn" />
+      <wsdl:output message="tns:invoiceDeleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="invoicePost">
+      <wsdl:input message="tns:invoicePostSoapIn" />
+      <wsdl:output message="tns:invoicePostSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="invoiceGetByCriteriaV1">
+      <wsdl:input message="tns:invoiceGetByCriteriaV1SoapIn" />
+      <wsdl:output message="tns:invoiceGetByCriteriaV1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="invoiceGetPdf">
+      <wsdl:input message="tns:invoiceGetPdfSoapIn" />
+      <wsdl:output message="tns:invoiceGetPdfSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="importResults">
+      <wsdl:input message="tns:importResultsSoapIn" />
+      <wsdl:output message="tns:importResultsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TransporterSoap" type="tns:TransporterSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PassThroughReq">
+      <soap:operation soapAction="http://amsservices.com/PassThroughReq" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PassThroughImp">
+      <soap:operation soapAction="http://amsservices.com/PassThroughImp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rolodexContains">
+      <soap:operation soapAction="http://amsservices.com/rolodexContains" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:rolodexContainsAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rolodexStartsWith">
+      <soap:operation soapAction="http://amsservices.com/rolodexStartsWith" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:rolodexStartsWithAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="clientInsert">
+      <soap:operation soapAction="http://amsservices.com/clientInsert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:clientInsertAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="clientUpdate">
+      <soap:operation soapAction="http://amsservices.com/clientUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:clientUpdateAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="policyInsert">
+      <soap:operation soapAction="http://amsservices.com/policyInsert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:policyInsertAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="policyUpdate">
+      <soap:operation soapAction="http://amsservices.com/policyUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:policyUpdateAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="policyDelete">
+      <soap:operation soapAction="http://amsservices.com/policyDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:policyDeleteAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="commissionStatementInsert">
+      <soap:operation soapAction="http://amsservices.com/commissionStatementInsert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:commissionStatementInsertAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cashReceiptInsert">
+      <soap:operation soapAction="http://amsservices.com/cashReceiptInsert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:cashReceiptInsertAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="customProcessUsher">
+      <soap:operation soapAction="http://amsservices.com/customProcessUsher" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:customProcessUsherAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="invoiceInsert">
+      <soap:operation soapAction="http://amsservices.com/invoiceInsert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:invoiceInsertAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="paymentInsert">
+      <soap:operation soapAction="http://amsservices.com/paymentInsert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:paymentInsertAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="paymentUpdate">
+      <soap:operation soapAction="http://amsservices.com/paymentUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:paymentUpdateAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insurerReceiptInsert">
+      <soap:operation soapAction="http://amsservices.com/insurerReceiptInsert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:insurerReceiptInsertAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insurerReceiptUpdate">
+      <soap:operation soapAction="http://amsservices.com/insurerReceiptUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:insurerReceiptUpdateAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insurerReceiptDelete">
+      <soap:operation soapAction="http://amsservices.com/insurerReceiptDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:insurerReceiptDeleteAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="invoiceVoid">
+      <soap:operation soapAction="http://amsservices.com/invoiceVoid" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:invoiceVoidAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="invoiceDelete">
+      <soap:operation soapAction="http://amsservices.com/invoiceDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:invoiceDeleteAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="invoicePost">
+      <soap:operation soapAction="http://amsservices.com/invoicePost" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:invoicePostAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="invoiceGetByCriteriaV1">
+      <soap:operation soapAction="http://amsservices.com/invoiceGetByCriteriaV1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:invoiceGetByCriteriaV1AuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="invoiceGetPdf">
+      <soap:operation soapAction="http://amsservices.com/invoiceGetPdf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:invoiceGetPdfAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="importResults">
+      <soap:operation soapAction="http://amsservices.com/importResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:importResultsAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TransporterSoap12" type="tns:TransporterSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PassThroughReq">
+      <soap12:operation soapAction="http://amsservices.com/PassThroughReq" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PassThroughImp">
+      <soap12:operation soapAction="http://amsservices.com/PassThroughImp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rolodexContains">
+      <soap12:operation soapAction="http://amsservices.com/rolodexContains" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:rolodexContainsAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rolodexStartsWith">
+      <soap12:operation soapAction="http://amsservices.com/rolodexStartsWith" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:rolodexStartsWithAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="clientInsert">
+      <soap12:operation soapAction="http://amsservices.com/clientInsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:clientInsertAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="clientUpdate">
+      <soap12:operation soapAction="http://amsservices.com/clientUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:clientUpdateAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="policyInsert">
+      <soap12:operation soapAction="http://amsservices.com/policyInsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:policyInsertAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="policyUpdate">
+      <soap12:operation soapAction="http://amsservices.com/policyUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:policyUpdateAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="policyDelete">
+      <soap12:operation soapAction="http://amsservices.com/policyDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:policyDeleteAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="commissionStatementInsert">
+      <soap12:operation soapAction="http://amsservices.com/commissionStatementInsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:commissionStatementInsertAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cashReceiptInsert">
+      <soap12:operation soapAction="http://amsservices.com/cashReceiptInsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:cashReceiptInsertAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="customProcessUsher">
+      <soap12:operation soapAction="http://amsservices.com/customProcessUsher" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:customProcessUsherAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="invoiceInsert">
+      <soap12:operation soapAction="http://amsservices.com/invoiceInsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:invoiceInsertAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="paymentInsert">
+      <soap12:operation soapAction="http://amsservices.com/paymentInsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:paymentInsertAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="paymentUpdate">
+      <soap12:operation soapAction="http://amsservices.com/paymentUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:paymentUpdateAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insurerReceiptInsert">
+      <soap12:operation soapAction="http://amsservices.com/insurerReceiptInsert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:insurerReceiptInsertAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insurerReceiptUpdate">
+      <soap12:operation soapAction="http://amsservices.com/insurerReceiptUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:insurerReceiptUpdateAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insurerReceiptDelete">
+      <soap12:operation soapAction="http://amsservices.com/insurerReceiptDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:insurerReceiptDeleteAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="invoiceVoid">
+      <soap12:operation soapAction="http://amsservices.com/invoiceVoid" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:invoiceVoidAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="invoiceDelete">
+      <soap12:operation soapAction="http://amsservices.com/invoiceDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:invoiceDeleteAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="invoicePost">
+      <soap12:operation soapAction="http://amsservices.com/invoicePost" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:invoicePostAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="invoiceGetByCriteriaV1">
+      <soap12:operation soapAction="http://amsservices.com/invoiceGetByCriteriaV1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:invoiceGetByCriteriaV1AuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="invoiceGetPdf">
+      <soap12:operation soapAction="http://amsservices.com/invoiceGetPdf" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:invoiceGetPdfAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="importResults">
+      <soap12:operation soapAction="http://amsservices.com/importResults" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:importResultsAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Transporter">
+    <wsdl:port name="TransporterSoap" binding="tns:TransporterSoap">
+      <soap:address location="https://amsws.worthaminsurance.com/SagittaWS/Transporter.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TransporterSoap12" binding="tns:TransporterSoap12">
+      <soap12:address location="https://amsws.worthaminsurance.com/SagittaWS/Transporter.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

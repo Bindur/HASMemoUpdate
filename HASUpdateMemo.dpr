@@ -8,17 +8,16 @@ uses
   Variants,
   MidasLib,
   HASMemoDM in 'HASMemoDM.pas' {DM1: TDataModule},
-//  BlockCiphers in 'BlockCiphers.pas',
-  SoapActivityU in 'SoapActivityU.pas',
   ADODB,
   ActiveX,
   Classes,
-  HASClientU in 'HASClientU.pas',
-  Transporter in 'Transporter.pas', HASSpecialWSTypes, Soap.SOAPHTTPClient;
+  HASSpecialTypesU,
+  Soap.SOAPHTTPClient,
+  HASBPClientU, HASActivityU;
 
 var
-  myMemo: TSoapActivity;
-  myClient: THASClient;
+  myMemo: THASActivity;
+  client: THASBPClient;
   sDate,sParam,sUser,sPassword,sAccount,sPool,sURL,sqlUser,sqlPass,sqlServer,sqlCat: string;
   dt1,dt2: TDateTime;
 //  FBlockCipher: TBlockCipher;
@@ -273,7 +272,7 @@ begin
 
   end;
 
-  myMemo := TSoapActivity.Create;
+  myMemo := THASActivity.Create;
   try
     oAuth.AHUserName := sUser;
     oAuth.AHPassword := sPassword;
@@ -283,20 +282,22 @@ begin
     oAuth.RIO.URL   := sURL;
     oAuth.DebugIsOn := DebugOn;
 
-    myMemo := TSoapActivity.Create;
-    myMemo.User := oAuth.AHUserName;
-    myMemo.Password := oAuth.AHPassword;
-    myMemo.Account := oAuth.AHAccount;
-    myMemo.AccessCode := oAuth.AHAccessCode;
-    myMemo.URL := oAuth.RIO.URL;
-    myMemo.ServerPool := oAuth.AHServerPool;
+    myMemo := THASActivity.Create;
+    myMemo.AuthRec := oAuth;
+//    myMemo.User := oAuth.AHUserName;
+//    myMemo.Password := oAuth.AHPassword;
+//    myMemo.Account := oAuth.AHAccount;
+//    myMemo.AccessCode := oAuth.AHAccessCode;
+//    myMemo.URL := oAuth.RIO.URL;
+//    myMemo.ServerPool := oAuth.AHServerPool;
     //myMemo.AuthRec := oAuth;
 
     // lookup test
     if test then
     begin
-      myClient := THASClient.Create;
-      myClient.AuthRec := oAuth;
+      client := THASBPClient.Create;
+      client.AuthRec := oAuth;
+      client.RIO := oAuth.RIO;
       with DM1.adoDS1 do
         begin
           Close;
@@ -319,10 +320,10 @@ begin
             if (FieldByName('CLIENTS_ID').AsString <> '') then
             begin
               writeln('Webservice test');
-              myClient.ID := FieldByName('CLIENTS_ID').AsString;
-              writeln('ID = ' + myClient.ID);
-              writeln('Name = ' + myClient.ClientName);
-              writeln('Code = ' + myClient.ClientCd);
+              client.lookup(FieldByName('CLIENTS_ID').AsInteger);
+              writeln('ID = ' + IntToStr(client.AcctID));
+              writeln('Name = ' + client.AcctName);
+              writeln('Code = ' + client.ClientCode);
             end;
           end;
         end;
