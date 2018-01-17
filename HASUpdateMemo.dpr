@@ -195,6 +195,11 @@ begin
         + ' -sqlUser sa -sqlPass abc123 -sqlServer HSQL -sqlCat HASSQL');
         exit;
     end
+    else if (sParam = '-sPassword') and (Paramcount = 2) then
+    begin
+      sPassword := ParamStr(2);
+      Writeln('sagitta password reset ' + sPassword + ', ' + StringToHex(sPassword));
+    end
     else if (sParam = '-install') and (Paramcount = 19) then
     begin
       sParam := ParamStr(2);
@@ -268,6 +273,8 @@ begin
     Writeln('Try one of the following options for more help');
     Writeln('');
     Writeln('usage: HASUpdateMemo -install');
+    Writeln('');
+    Writeln('usage: HASUpdateMemo -sPassword');
     Writeln('');
     Writeln('usage: HASUpdateMemo -type');
     Writeln('');
